@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qfedu.mapper.InformationMapper" >
+  <resultMap id="BaseResultMap" type="com.qfedu.domain.Information" >
+    <id column="informationid" property="informationid" jdbcType="INTEGER" />
+    <result column="informationname" property="informationname" jdbcType="VARCHAR" />
+    <result column="typeid" property="typeid" jdbcType="INTEGER" />
+    <result column="date" property="date" jdbcType="DATE" />
+    <result column="filetype" property="filetype" jdbcType="VARCHAR" />
+    <result column="uploader" property="uploader" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    informationid, informationname, typeid, date, filetype, uploader
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from information
+    where informationid = #{informationid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from information
+    where informationid = #{informationid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.qfedu.domain.Information" >
+    insert into information (informationid, informationname, typeid, 
+      date, filetype, uploader
+      )
+    values (#{informationid,jdbcType=INTEGER}, #{informationname,jdbcType=VARCHAR}, #{typeid,jdbcType=INTEGER}, 
+      #{date,jdbcType=DATE}, #{filetype,jdbcType=VARCHAR}, #{uploader,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.qfedu.domain.Information" >
+    insert into information
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="informationid != null" >
+        informationid,
+      </if>
+      <if test="informationname != null" >
+        informationname,
+      </if>
+      <if test="typeid != null" >
+        typeid,
+      </if>
+      <if test="date != null" >
+        date,
+      </if>
+      <if test="filetype != null" >
+        filetype,
+      </if>
+      <if test="uploader != null" >
+        uploader,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="informationid != null" >
+        #{informationid,jdbcType=INTEGER},
+      </if>
+      <if test="informationname != null" >
+        #{informationname,jdbcType=VARCHAR},
+      </if>
+      <if test="typeid != null" >
+        #{typeid,jdbcType=INTEGER},
+      </if>
+      <if test="date != null" >
+        #{date,jdbcType=DATE},
+      </if>
+      <if test="filetype != null" >
+        #{filetype,jdbcType=VARCHAR},
+      </if>
+      <if test="uploader != null" >
+        #{uploader,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qfedu.domain.Information" >
+    update information
+    <set >
+      <if test="informationname != null" >
+        informationname = #{informationname,jdbcType=VARCHAR},
+      </if>
+      <if test="typeid != null" >
+        typeid = #{typeid,jdbcType=INTEGER},
+      </if>
+      <if test="date != null" >
+        date = #{date,jdbcType=DATE},
+      </if>
+      <if test="filetype != null" >
+        filetype = #{filetype,jdbcType=VARCHAR},
+      </if>
+      <if test="uploader != null" >
+        uploader = #{uploader,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where informationid = #{informationid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qfedu.domain.Information" >
+    update information
+    set informationname = #{informationname,jdbcType=VARCHAR},
+      typeid = #{typeid,jdbcType=INTEGER},
+      date = #{date,jdbcType=DATE},
+      filetype = #{filetype,jdbcType=VARCHAR},
+      uploader = #{uploader,jdbcType=VARCHAR}
+    where informationid = #{informationid,jdbcType=INTEGER}
+  </update>
+
+
+
+  <select id="getList" resultType="information" parameterType="java.util.Map">
+    SELECT im.*,it.infotype as typename FROM information im LEFT JOIN infotype it ON im.typeid = it.infoid
+    <where>
+      <if test="informationname!=null and information!=''">
+          informationname LIKE  '%${informationname}%'
+      </if>
+      <if test="typeid!=null and typeid!=''">
+        AND  typeid=#{typeid}
+      </if>
+    </where>
+  </select>
+</mapper>

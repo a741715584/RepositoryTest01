@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qfedu.mapper.User_tbMapper" >
+  <resultMap id="BaseResultMap" type="com.qfedu.domain.User_tb" >
+    <id column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="student_id" property="studentId" jdbcType="INTEGER" />
+    <result column="role_id" property="roleId" jdbcType="INTEGER" />
+    <result column="user_name" property="userName" jdbcType="VARCHAR" />
+    <result column="user_ps" property="userPs" jdbcType="VARCHAR" />
+    <result column="user_realname" property="userRealname" jdbcType="VARCHAR" />
+    <result column="user_sex" property="userSex" jdbcType="VARCHAR" />
+    <result column="user_email" property="userEmail" jdbcType="VARCHAR" />
+    <result column="user_phone" property="userPhone" jdbcType="VARCHAR" />
+    <result column="user_address" property="userAddress" jdbcType="VARCHAR" />
+    <result column="user_idcard" property="userIdcard" jdbcType="VARCHAR" />
+    <result column="user_content" property="userContent" jdbcType="VARCHAR" />
+    <result column="logincount" property="logincount" jdbcType="INTEGER" />
+    <result column="regdate" property="regdate" jdbcType="DATE" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    user_id, student_id, role_id, user_name, user_ps, user_realname, user_sex, user_email, 
+    user_phone, user_address, user_idcard, user_content, logincount, regdate
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from user_tb
+    where user_id = #{userId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from user_tb
+    where user_id = #{userId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.qfedu.domain.User_tb" >
+    insert into user_tb (user_id, student_id, role_id, 
+      user_name, user_ps, user_realname, 
+      user_sex, user_email, user_phone, 
+      user_address, user_idcard, user_content, 
+      logincount, regdate)
+    values (#{userId,jdbcType=INTEGER}, #{studentId,jdbcType=INTEGER}, #{roleId,jdbcType=INTEGER}, 
+      #{userName,jdbcType=VARCHAR}, #{userPs,jdbcType=VARCHAR}, #{userRealname,jdbcType=VARCHAR}, 
+      #{userSex,jdbcType=VARCHAR}, #{userEmail,jdbcType=VARCHAR}, #{userPhone,jdbcType=VARCHAR}, 
+      #{userAddress,jdbcType=VARCHAR}, #{userIdcard,jdbcType=VARCHAR}, #{userContent,jdbcType=VARCHAR}, 
+      #{logincount,jdbcType=INTEGER}, #{regdate,jdbcType=DATE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.qfedu.domain.User_tb" >
+    insert into user_tb
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="studentId != null" >
+        student_id,
+      </if>
+      <if test="roleId != null" >
+        role_id,
+      </if>
+      <if test="userName != null" >
+        user_name,
+      </if>
+      <if test="userPs != null" >
+        user_ps,
+      </if>
+      <if test="userRealname != null" >
+        user_realname,
+      </if>
+      <if test="userSex != null" >
+        user_sex,
+      </if>
+      <if test="userEmail != null" >
+        user_email,
+      </if>
+      <if test="userPhone != null" >
+        user_phone,
+      </if>
+      <if test="userAddress != null" >
+        user_address,
+      </if>
+      <if test="userIdcard != null" >
+        user_idcard,
+      </if>
+      <if test="userContent != null" >
+        user_content,
+      </if>
+      <if test="logincount != null" >
+        logincount,
+      </if>
+      <if test="regdate != null" >
+        regdate,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="studentId != null" >
+        #{studentId,jdbcType=INTEGER},
+      </if>
+      <if test="roleId != null" >
+        #{roleId,jdbcType=INTEGER},
+      </if>
+      <if test="userName != null" >
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="userPs != null" >
+        #{userPs,jdbcType=VARCHAR},
+      </if>
+      <if test="userRealname != null" >
+        #{userRealname,jdbcType=VARCHAR},
+      </if>
+      <if test="userSex != null" >
+        #{userSex,jdbcType=VARCHAR},
+      </if>
+      <if test="userEmail != null" >
+        #{userEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="userPhone != null" >
+        #{userPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="userAddress != null" >
+        #{userAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="userIdcard != null" >
+        #{userIdcard,jdbcType=VARCHAR},
+      </if>
+      <if test="userContent != null" >
+        #{userContent,jdbcType=VARCHAR},
+      </if>
+      <if test="logincount != null" >
+        #{logincount,jdbcType=INTEGER},
+      </if>
+      <if test="regdate != null" >
+        #{regdate,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qfedu.domain.User_tb" >
+    update user_tb
+    <set >
+      <if test="studentId != null" >
+        student_id = #{studentId,jdbcType=INTEGER},
+      </if>
+      <if test="roleId != null" >
+        role_id = #{roleId,jdbcType=INTEGER},
+      </if>
+      <if test="userName != null" >
+        user_name = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="userPs != null" >
+        user_ps = #{userPs,jdbcType=VARCHAR},
+      </if>
+      <if test="userRealname != null" >
+        user_realname = #{userRealname,jdbcType=VARCHAR},
+      </if>
+      <if test="userSex != null" >
+        user_sex = #{userSex,jdbcType=VARCHAR},
+      </if>
+      <if test="userEmail != null" >
+        user_email = #{userEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="userPhone != null" >
+        user_phone = #{userPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="userAddress != null" >
+        user_address = #{userAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="userIdcard != null" >
+        user_idcard = #{userIdcard,jdbcType=VARCHAR},
+      </if>
+      <if test="userContent != null" >
+        user_content = #{userContent,jdbcType=VARCHAR},
+      </if>
+      <if test="logincount != null" >
+        logincount = #{logincount,jdbcType=INTEGER},
+      </if>
+      <if test="regdate != null" >
+        regdate = #{regdate,jdbcType=DATE},
+      </if>
+    </set>
+    where user_id = #{userId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qfedu.domain.User_tb" >
+    update user_tb
+    set student_id = #{studentId,jdbcType=INTEGER},
+      role_id = #{roleId,jdbcType=INTEGER},
+      user_name = #{userName,jdbcType=VARCHAR},
+      user_ps = #{userPs,jdbcType=VARCHAR},
+      user_realname = #{userRealname,jdbcType=VARCHAR},
+      user_sex = #{userSex,jdbcType=VARCHAR},
+      user_email = #{userEmail,jdbcType=VARCHAR},
+      user_phone = #{userPhone,jdbcType=VARCHAR},
+      user_address = #{userAddress,jdbcType=VARCHAR},
+      user_idcard = #{userIdcard,jdbcType=VARCHAR},
+      user_content = #{userContent,jdbcType=VARCHAR},
+      logincount = #{logincount,jdbcType=INTEGER},
+      regdate = #{regdate,jdbcType=DATE}
+    where user_id = #{userId,jdbcType=INTEGER}
+  </update>
+  
+  <select id="selectByUsername" resultMap="BaseResultMap">
+      select *from user_tb where user_name=#{username}
+  </select>
+
+  <resultMap id="selectByGrandResultMap" type="com.qfedu.domain.User_tbPro" extends="BaseResultMap">
+      <result property="managerid" column="managerid"></result>
+    <result property="managername" column="managername"></result>
+
+    <collection property="list" ofType="com.qfedu.domain.Menu">
+      <id column="menuid" property="menuid" jdbcType="INTEGER" />
+      <result column="menuname" property="menuname" jdbcType="VARCHAR" />
+      <result column="upmenuid" property="upmenuid" jdbcType="INTEGER" />
+      <result column="menupath" property="menupath" jdbcType="VARCHAR" />
+      <result column="menustate" property="menustate" jdbcType="INTEGER" />
+      <result column="menuremark" property="menuremark" jdbcType="VARCHAR" />
+    </collection>
+
+  </resultMap>
+  <select id="selectByGrand" resultMap="selectByGrandResultMap">
+      select u.*,me.*,u2.user_name as managername from  user_tb u LEFT JOIN role r ON u.role_id = r.roleid
+         LEFT JOIN middle m ON r.roleid = m.roleid
+           LEFT JOIN menu me ON m.menuid = me.menuid
+           LEFT JOIN user_tb u2 ON u.managerid=u2.user_id
+            WHERE r.rolestate=1 AND u.user_name=#{name}
+  </select>
+
+  
+  <update id="updateCount">
+      UPDATE  user_tb SET logincount=logincount+1 where user_name=#{username}
+  </update>
+  
+  <select id="selectClassTeacher" resultMap="BaseResultMap" parameterType="map">
+    SELECT *from user_tb u LEFT JOIN user_class_major ucm on u.user_id = ucm.userid LEFT JOIN role r ON r.roleid = u.role_id
+  WHERE r.rolename=#{rolename}  AND  ucm.departid = #{departid}  AND  ucm.majorid = #{majorid}
+  </select>
+</mapper>

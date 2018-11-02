@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<taglib>
+    <tlib-version>1.0</tlib-version><!-- 代表标签库的版本号 -->
+    <jsp-version>1.2</jsp-version><!-- 代表jsp的版本 -->
+    <short-name>mtt</short-name><!-- 你的标签库的简称 -->
+    <uri>http://vmaxtam.com/mytag</uri><!-- 你标签库的引用uri -->
+
+    <tag>
+        <name>mytag</name>
+        <tag-class>com.qfedu.commons.MyTag</tag-class>
+        <body-content> empty</body-content>
+        <attribute>
+            <name>info</name>
+            <type>java.lang.String</type>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+    </tag>
+    
+    <tag>
+        <name>sortpage</name>
+        <tag-class>com.qfedu.commons.SortPage</tag-class>
+        <body-content>empty</body-content>
+        
+        <attribute>
+            <name>url</name>
+            <type>java.lang.String</type>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>pageUtil</name>
+            <type>com.qfedu.domain.PageUtil</type>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+    </tag>
+
+    <tag>
+        <name>fy</name>
+        <tag-class>com.qfedu.commons.FenyeUtil</tag-class>
+        <body-content>empty</body-content>
+        <attribute>
+            <name>url</name>
+            <required>true</required>
+            <type>java.lang.String</type>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>pageInfo</name>
+            <type>com.github.pagehelper.PageInfo</type>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+    </tag>
+</taglib>

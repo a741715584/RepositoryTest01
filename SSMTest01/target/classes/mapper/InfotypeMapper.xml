@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qfedu.mapper.InfotypeMapper" >
+  <resultMap id="BaseResultMap" type="com.qfedu.domain.Infotype" >
+    <id column="infoid" property="infoid" jdbcType="INTEGER" />
+    <result column="infotype" property="infotype" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    infoid, infotype
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from infotype
+    where infoid = #{infoid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from infotype
+    where infoid = #{infoid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.qfedu.domain.Infotype" >
+    insert into infotype (infoid, infotype)
+    values (#{infoid,jdbcType=INTEGER}, #{infotype,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.qfedu.domain.Infotype" >
+    insert into infotype
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="infoid != null" >
+        infoid,
+      </if>
+      <if test="infotype != null" >
+        infotype,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="infoid != null" >
+        #{infoid,jdbcType=INTEGER},
+      </if>
+      <if test="infotype != null" >
+        #{infotype,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qfedu.domain.Infotype" >
+    update infotype
+    <set >
+      <if test="infotype != null" >
+        infotype = #{infotype,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where infoid = #{infoid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qfedu.domain.Infotype" >
+    update infotype
+    set infotype = #{infotype,jdbcType=VARCHAR}
+    where infoid = #{infoid,jdbcType=INTEGER}
+  </update>
+</mapper>
